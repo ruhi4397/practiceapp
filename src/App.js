@@ -1,16 +1,15 @@
 
 import { useState } from 'react';
 import './App.css';
-//import About from './components/About';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/Textform';
 import Alert from './components/Alert';
-// eslint-disable-next-line no-lone-blocks
-{/*import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom"*/}
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -45,27 +44,21 @@ else{
   }
   return (
     <>
-   {/*<Router>*/}
+   <Router>
       {/* props value called / added in Navbar.js */}
   
       <Navbar title="TextUtils" about="About TextUtils" mode={mode} toggleMode= {toggleMode} />
       <Alert alert={alert}/>
       <div className="container my -3">
       
-      {/*<Routes>
-          
-          <Route exact path="/about" element={<About />} >
-            <About />
-          </Route>
-        
-          <Route exact path="/">
-          <TextForm showAlert={showAlert}heading=" Enter the text to analyse below." mode={mode} />
-         </Route>
+      <Routes>
+         <Route path="/about" element={<About mode={mode}/>}/>
+         <Route path="/" element={<TextForm showAlert={showAlert}heading=" Enter the text to analyse below." mode={mode}/>}/>
+          {/*<TextForm showAlert={showAlert}heading=" Enter the text to analyse below." mode={mode} />*/}
         </Routes>
        </div>
-       </Router>*/}
-       <TextForm showAlert={showAlert}heading=" Enter the text to analyse below." mode={mode} />
-       </div>
+       </Router>
+       
     </>
   );
 }
